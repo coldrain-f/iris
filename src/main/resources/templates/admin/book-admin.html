@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/bulma/bulma.css}">
+    <link rel="stylesheet" th:href="@{/css/home/main.css}">
+    <link rel="stylesheet" th:href="@{/css/home/font.css}">
+
+    <!-- JS -->
+    <script th:src="@{'https://code.jquery.com/jquery-latest.min.js'}"></script>
+
+    <title>Iris</title>
+</head>
+<body>
+
+<!--    navbar -->
+<nav class="navbar is-link p-2" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" th:href="@{/}" href="#">
+            <strong class="title is-6 has-text-white">아이리스</strong>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+           data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div class="navbar-menu">
+        <div class="navbar-start">
+            <a href="#" class="navbar-item">관리자 페이지</a>
+        </div>
+    </div>
+</nav>
+<!--    //navbar -->
+<div class="columns">
+    <div class="column is-one-fifth has-background-link-light"
+         style="border-right: 1px solid gray">
+        <div class="container p-3">
+            <h6 class="title is-6">사용자</h6>
+            <a href="#" class="navbar-item">사용자 관리</a>
+        </div>
+    </div>
+    <div class="column">column2</div>
+</div>
+</body>
+</html>

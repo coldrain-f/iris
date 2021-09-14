@@ -1,0 +1,20 @@
+#slide .slide-content {
+    background-image: url("../../images/slides/tokyos.jpg");
+    background-size: cover;
+    width: 750px;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#slide .prev {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+
+#slide .next {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/bulma/bulma.css}">
+    <link rel="stylesheet" th:href="@{/css/home/main.css}">
+    <link rel="stylesheet" th:href="@{/css/home/font.css}">
+
+    <!-- JS -->
+    <script th:src="@{'https://code.jquery.com/jquery-latest.min.js'}"></script>
+
+    <title>Iris</title>
+</head>
+<body>
+
+<div class="container">
+    <!--    navbar -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" th:href="@{/}" href="#">
+                <strong class="title is-6">아이리스</strong>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">언어 학습</a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">영어</a>
+                        <a class="navbar-item">일본어</a>
+                        <a class="navbar-item">중국어</a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item">Report an issue</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-dark is-inverted is-rounded" th:href="@{/login}">
+                            로그인
+                        </a>
+                        <a class="button is-dark is-inverted is-rounded" th:href="@{/register}">
+                            회원가입
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--    //navbar -->
+
+
+</div>
+</body>
+</html>
