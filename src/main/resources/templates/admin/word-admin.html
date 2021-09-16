@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +21,7 @@
 
     <!-- JQuery -->
     <script th:src="@{'https://code.jquery.com/jquery-latest.min.js'}"></script>
+
 </head>
 
 <body id="page-top">
@@ -51,7 +53,7 @@
         </div>
 
         <!-- Nav Item - Tables -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" th:href="@{/admin/book}" href="#">
                 <i class="fas fa-fw fa-table"></i>
                 <span>책 관리</span></a>
@@ -63,7 +65,7 @@
                 <span>카테고리 관리</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" th:href="@{/admin/word}" href="#">
                 <i class="fas fa-fw fa-table"></i>
                 <span>단어 관리</span></a>
@@ -134,7 +136,6 @@
                             </form>
                         </div>
                     </li>
-
                 </ul>
 
             </nav>
@@ -143,10 +144,32 @@
             <div class="container-fluid">
                 <div class="card shadow">
                     <div class="card-header">
-                        <div class="card-title">책 관리</div>
-                    </div>
-                    <div class="card-body">
+                        <form action="#" method="get">
+                            <!-- 책 이름 조회 -->
+                            <div class="row mb-4 pl-2 pr-2">
+                                <label for="bookSelect" class="form-label">책</label>
+                                <select class="custom-select" name="bookId" id="bookSelect">
+                                    <option value="">단어가 읽기다 기본편</option>
+                                </select>
+                            </div>
+                            <!-- ./책 이름 조회 -->
 
+                            <!-- 카테고리 조회 -->
+                            <div class="row mb-4 pl-2 pr-2">
+                                <label for="categorySelect" class="form-label">카테고리</label>
+                                <select class="custom-select" name="categoryId" id="categorySelect">
+                                    <option value="">Unit 01 - 요리</option>
+                                </select>
+                            </div>
+                            <!-- ./카테고리 조회 -->
+
+                            <div class="row d-flex justify-content-end">
+                                <button type="submit" class="btn btn-info mr-2">단어 조회</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card-body">
                         <!-- Begin Search Form -->
                         <div class="row mb-2 pl-2 pr-2 d-flex justify-content-end">
                             <form class="form-inline" action="" method="GET">
@@ -168,7 +191,7 @@
 
                         <!-- Begin Table -->
                         <div class="table-responsive bg-white">
-                            <table class="table table-sm table-hover">
+                            <table id="table" class="table table-sm table-hover">
                                 <thead>
                                 <tr>
                                     <th>
@@ -176,7 +199,8 @@
                                         <label class="form-label p-0 m-0 pl-2" for="all">ALL</label>
                                     </th>
                                     <th>ID</th>
-                                    <th>BOOK NAME</th>
+                                    <th>WORD</th>
+                                    <th>MEANING</th>
                                     <th>INSERT DATE</th>
                                     <th>UPDATE DATE</th>
                                     <th class="text-center">ACTIONS</th>
@@ -186,10 +210,21 @@
                                 <tbody>
                                 <tr>
                                     <td><input type="checkbox"></td>
-                                    <td>1</td>
-                                    <td><a class="text-muted" href="#">단어가 읽기다 기본편</a></td>
-                                    <td>2021-09-14</td>
-                                    <td>2021-09-15</td>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        spice
+                                    </td>
+                                    <td>
+                                        양념
+                                    </td>
+                                    <td>
+                                        2021-09-14
+                                    </td>
+                                    <td>
+                                        2021-09-15
+                                    </td>
                                     <td class="text-center">
                                         <button class="btn text-dark p-0 modalEventButton" type="button"
                                                 data-toggle="modal" data-target="#modifyModal">
@@ -199,6 +234,7 @@
                                                 data-toggle="modal" data-target="#deleteModal">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
+
                                     </td>
                                     <td class="text-center"><span class="badge badge-pill badge-info">NEW</span>
                                     </td>
@@ -212,7 +248,7 @@
                             <div class="col d-flex justify-content-center">
                                 <nav>
                                     <ul class="pagination">
-                                        <li class="page-item ${pageDTO.prev ? '' : 'disabled' }">
+                                        <li class="page-item">
                                             <a class="page-link" href="#">
                                                 <span>&laquo;</span>
                                             </a>
@@ -242,15 +278,12 @@
                             </div>
                         </div>
 
-
                         <div class="row">
                             <div class="col d-flex justify-content-end">
                                 <button class="btn btn-primary modalEventButton" type="button" data-toggle="modal"
                                         data-target="#addModal">추가하기
                                 </button>
-                                <button type="button" class="ml-2 btn btn-primary"
-                                        onclick="alert('선택된 기능이 구현되지 않았습니다.')">선택된 책 삭제
-                                </button>
+                                <button type="button" class="ml-2 btn btn-primary">선택된 아이템 삭제</button>
                             </div>
                         </div>
 
@@ -259,7 +292,6 @@
                 </div>
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- End of Main Content -->
 
@@ -272,37 +304,10 @@
             </div>
         </footer>
         <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
-
 </div>
 <!-- End of Page Wrapper -->
-
-<!-- 추가하기 모달창 -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
-    <form action="#" method="post">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">책 추가</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label class="form-label mt-2" for="">책 이름</label>
-                    <input class="form-control mb-4" type="text"
-                           id="" name="bookName" placeholder="추가할 책 이름을 입력해 주세요..." autocomplete="off"/>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-                    <button type="submit" class="btn btn-primary">추가하기</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
