@@ -46,7 +46,13 @@
                         <a class="navbar-item">Report an issue</a>
                     </div>
                 </div>
-
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a href="#" class="navbar-link">커뮤니티</a>
+                    <div class="navbar-dropdown">
+                        <a href="#" class="navbar-item">공지 게시판</a>
+                        <a th:href="@{/board/list}" href="#" class="navbar-item">자유 게시판</a>
+                    </div>
+                </div>
                 <a th:href="@{/admin/book}" href="#" class="navbar-item">관리자 페이지</a>
             </div>
 

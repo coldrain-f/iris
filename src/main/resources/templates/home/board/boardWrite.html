@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자유게시판 글쓰기</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/bulma/bulma.css}">
+    <link rel="stylesheet" th:href="@{/css/home/font.css}">
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
+
+    <!-- JS -->
+    <script th:src="@{'https://code.jquery.com/jquery-latest.min.js'}"></script>
+    <script src="https://kit.fontawesome.com/223e8d4ffc.js" crossorigin="anonymous"></script>
+
+    <!-- include summernote css/js -->
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css}" rel="stylesheet">
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js}"></script>
+
+</head>
+<body>
+
+<!-- container -->
+<div class="container h-100">
+    <!--    navbar -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" th:href="@{/}" href="#">
+                <strong class="title is-6">아이리스</strong>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">단어 학습</a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">영어</a>
+                        <a class="navbar-item">일본어</a>
+                        <a class="navbar-item">중국어</a>
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a href="#" class="navbar-link">커뮤니티</a>
+                    <div class="navbar-dropdown">
+                        <a href="#" class="navbar-item">공지 게시판</a>
+                        <a th:href="@{/board/list}" href="#" class="navbar-item">자유 게시판</a>
+                    </div>
+                </div>
+                <a th:href="@{/admin/book}" href="#" class="navbar-item">관리자 페이지</a>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a href="#" class="navbar-link">
+                        언어 선택
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a href="#" class="navbar-item has-text-link">한국어</a>
+                        <a href="#" class="navbar-item">日本語</a>
+                        <a href="#" class="navbar-item">English</a>
+                    </div>
+                </div>
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-dark is-inverted is-rounded" th:href="@{/login}">
+                            로그인
+                        </a>
+                        <a class="button is-dark is-inverted is-rounded" th:href="@{/register}">
+                            회원가입
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--    //navbar -->
+
+    <div class="box">
+        <div class="message is-link">
+            <div class="message-header">
+                <p>자유게시판 글쓰기</p>
+                <button type="button" class="button is-link is-light is-rounded">
+                    <a th:href="@{/board/list}" href="#" style="text-decoration: none">목록으로</a>
+                </button>
+            </div>
+            <div class="message-body">
+                <!-- form -->
+                <form class="box" action="#" method="post">
+                    <!-- title -->
+                    <div class="field">
+                        <label for="title" class="label">제목</label>
+                        <div class="control">
+                            <input type="text" class="input" id="title" name="title"/>
+                        </div>
+                    </div>
+                    <!-- //title -->
+                    <!-- content -->
+                    <div class="field">
+                        <label for="content" class="label">내용</label>
+                        <div class="control">
+                            <textarea class="textarea" name="content" id="content"></textarea>
+                        </div>
+                    </div>
+                    <!-- //content -->
+
+                    <!-- summernote javascript -->
+                    <script>
+                        $(document).ready(function () {
+                            $("#content").summernote({
+                                height: 300,
+                                minHeight: null,
+                                maxHeight: null,
+                                focus: false,
+                                lang: "ko-KR",
+                            });
+                        });
+                    </script>
+                    <!-- //summernote javascript -->
+
+                    <!-- file upload 1 -->
+                    <div class="file has-name is-link is-fullwidth">
+                        <label class="file-label">
+                            <input type="file" class="file-input">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    파일 선택
+                                </span>
+                            </span>
+                            <span class="file-name">
+                                파일.jpg
+                            </span>
+                        </label>
+                    </div>
+                    <!-- //file upload 1 -->
+
+                    <!-- file upload 2 -->
+                    <div class="file has-name is-link is-fullwidth mt-2 mb-3">
+                        <label class="file-label">
+                            <input type="file" class="file-input">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    파일 선택
+                                </span>
+                            </span>
+                            <span class="file-name">
+                                파일.jpg
+                            </span>
+                        </label>
+                    </div>
+                    <!-- //file upload 2 -->
+
+                    <div class="buttons is-justify-content-end">
+                        <button type="submit" class="button is-link">작성 완료</button>
+                    </div>
+                </form>
+                <!-- //form -->
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <footer class="footer" style="margin-top: 120px">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+                <a href="#">MIT</a>. The website content
+                is licensed <a href="#">CC BY NC SA 4.0</a>.
+            </p>
+        </div>
+    </footer>
+    <!-- //footer -->
+</div>
+<!-- //container -->
+
+</body>
+</html>

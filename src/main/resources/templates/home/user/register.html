@@ -45,8 +45,13 @@
                         <a class="navbar-item">영어</a>
                         <a class="navbar-item">일본어</a>
                         <a class="navbar-item">중국어</a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item">Report an issue</a>
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a href="#" class="navbar-link">커뮤니티</a>
+                    <div class="navbar-dropdown">
+                        <a href="#" class="navbar-item">공지 게시판</a>
+                        <a th:href="@{/board/list}" href="#" class="navbar-item">자유 게시판</a>
                     </div>
                 </div>
                 <a th:href="@{/admin/book}" href="#" class="navbar-item">관리자 페이지</a>
@@ -90,6 +95,15 @@
                         <figure class="image is-128x128 mr-auto ml-auto">
                             <img th:src="@{/images/logo/logos.jpg}" class="is-rounded" src="" alt="">
                         </figure>
+                        <div class="field">
+                            <label for="nickname" class="label">닉네임</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input type="text" class="input" id="nickname" name="nickname" autocomplete="off" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-address-card"></i>
+                                </span>
+                            </div>
+                        </div>
                         <div class="field">
                             <label for="loginId" class="label">아이디</label>
                             <div class="control has-icons-left has-icons-right">
