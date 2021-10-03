@@ -1,10 +1,220 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자유게시판 상세 보기</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/bulma/bulma.css}">
+    <link rel="stylesheet" th:href="@{/css/share/font.css}">
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
+
+    <!-- JS -->
+    <script th:src="@{'https://code.jquery.com/jquery-latest.min.js'}"></script>
+    <script src="https://kit.fontawesome.com/223e8d4ffc.js" crossorigin="anonymous"></script>
+
+    <style>
+        .pagination-previous, .pagination-next, .pagination-link {
+            text-decoration: none !important;
+        }
+    </style>
+
 </head>
 <body>
+
+<!-- container -->
+<div class="container h-100">
+    <!--    navbar -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" th:href="@{/}" href="#">
+                <strong class="title is-6">아이리스</strong>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">단어 학습</a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">영어</a>
+                        <a class="navbar-item">일본어</a>
+                        <a class="navbar-item">중국어</a>
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a href="#" class="navbar-link">커뮤니티</a>
+                    <div class="navbar-dropdown">
+                        <a th:href="@{/board/list}" href="#" class="navbar-item">공지 게시판</a>
+                        <a th:href="@{/board/list}" href="#"
+                           class="navbar-item has-text-link has-text-weight-bold">자유 게시판</a>
+                    </div>
+                </div>
+                <a th:href="@{/admin/book}" href="#" class="navbar-item">관리자 페이지</a>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a href="#" class="navbar-link">
+                        언어 선택
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a href="#" class="navbar-item has-text-link has-text-weight-bold">한국어</a>
+                        <a href="#" class="navbar-item">日本語</a>
+                        <a href="#" class="navbar-item">English</a>
+                    </div>
+                </div>
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-dark is-inverted is-rounded" th:href="@{/login}">
+                            로그인
+                        </a>
+                        <a class="button is-dark is-inverted is-rounded" th:href="@{/register}">
+                            회원가입
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--    //navbar -->
+
+    <div class="box">
+        <div class="message is-link">
+            <div class="message-header">
+                <p>상세 보기</p>
+            </div>
+            <!-- message-body -->
+            <div class="message-body">
+                <div class="box">
+                    <div class="columns">
+                        <div class="column">
+                            <h4 class="title is-4">첫 게시글입니다.</h4>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td class="has-text-grey has-text-weight-bold">관리자</td>
+                                <td>2021. 10. 03. 11:57:56</td>
+                                <td>조회수 0</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="border-bottom: 2px solid #f5f5f5; margin-bottom: 15px"></div>
+                    <div class="columns">
+                        <div class="column mb-6">반갑습니다. 관리자입니다.</div>
+                    </div>
+                    <div style="border-bottom: 2px solid #f5f5f5; margin-bottom: 15px"></div>
+                    <div class="buttons is-justify-content-flex-end">
+                        <div class="button is-link is-rounded" th:onclick="|location.href='@{/board/modify}'|">
+                            <span class="icon is-small">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span>수정</span>
+                        </div>
+                        <div class="button is-link is-rounded">
+                            <span class="icon is-small">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                            <span>삭제</span>
+                        </div>
+                        <div class="button is-rounded"
+                             th:onclick="|location.href='@{/board/list}'|">
+                            <span class="icon is-small">
+                                <i class="fas fa-list"></i>
+                            </span>
+                            <span>목록</span>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="field">
+                            <p class="label">관리자</p>
+                            <div class="control">
+                                <input type="text" class="input" title="comment" placeholder="덧글을 작성해 주세요" />
+                                <div class="buttons mt-2 is-justify-content-flex-end ">
+                                    <button class="button is-link is-light is-rounded">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-feather"></i>
+                                    </span>
+                                        <span>등록</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="border-bottom: 2px solid #f5f5f5; margin-bottom: 15px"></div>
+                        <h6 class="title is-6">
+                            <span class="has-background-info has-text-white p-1">5</span>개의 덧글이 달렸습니다.
+                        </h6>
+                        <div style="border-bottom: 2px solid #f5f5f5; margin-bottom: 15px"></div>
+                        <table class="table is-fullwidth is-hoverable">
+                            <tbody>
+                            <tr th:each="num : ${#numbers.sequence(1, 5)}">
+                                <td class="has-text-grey has-text-weight-bold">관리자</td>
+                                <td>테스트 덧글입니다.</td>
+                                <td>2021.10.03 12:58</td>
+                                <td>
+                                    <a style="text-decoration: none">
+                                        <span class="icon is-small">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a style="text-decoration: none">
+                                        <span class="icon is-small">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <nav class="pagination is-centered is-rounded">
+                            <a href="#" class="pagination-previous">이전</a>
+                            <a href="#" class="pagination-next">다음</a>
+                            <ul class="pagination-list">
+                                <li><a href="#" class="pagination-link is-current">1</a></li>
+                                <li><a href="#" class="pagination-link">2</a></li>
+                                <li><a href="#" class="pagination-link">3</a></li>
+                                <li><a href="#" class="pagination-link">4</a></li>
+                                <li><a href="#" class="pagination-link">5</a></li>
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+            </div>
+            <!-- //message-body -->
+        </div>
+    </div>
+    <!-- footer -->
+    <footer class="footer" style="margin-top: 120px">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+                <a href="#">MIT</a>. The website content
+                is licensed <a href="#">CC BY NC SA 4.0</a>.
+            </p>
+        </div>
+    </footer>
+    <!-- //footer -->
+</div>
+<!-- //container -->
 
 </body>
 </html>

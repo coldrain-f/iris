@@ -50,7 +50,7 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a href="#" class="navbar-link">커뮤니티</a>
                     <div class="navbar-dropdown">
-                        <a href="#" class="navbar-item">공지 게시판</a>
+                        <a th:href="@{/board/list}" href="#" class="navbar-item">공지 게시판</a>
                         <a th:href="@{/board/list}" href="#" class="navbar-item">자유 게시판</a>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                         언어 선택
                     </a>
                     <div class="navbar-dropdown">
-                        <a href="#" class="navbar-item has-text-link">한국어</a>
+                        <a href="#" class="navbar-item has-text-link has-text-weight-bold">한국어</a>
                         <a href="#" class="navbar-item">日本語</a>
                         <a href="#" class="navbar-item">English</a>
                     </div>

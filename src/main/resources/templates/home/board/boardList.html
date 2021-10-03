@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>자유게시판</title>
+    <title>자유게시판 목록</title>
 
     <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/bulma/bulma.css}">
-    <link rel="stylesheet" th:href="@{/css/home/font.css}">
+    <link rel="stylesheet" th:href="@{/css/share/font.css}">
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
 
     <style>
@@ -59,8 +59,9 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a href="#" class="navbar-link">커뮤니티</a>
                     <div class="navbar-dropdown">
-                        <a href="#" class="navbar-item">공지 게시판</a>
-                        <a th:href="@{/board/list}" href="#" class="navbar-item">자유 게시판</a>
+                        <a th:href="@{/board/list}" href="#" class="navbar-item">공지 게시판</a>
+                        <a th:href="@{/board/list}" href="#"
+                           class="navbar-item has-text-link has-text-weight-bold">자유 게시판</a>
                     </div>
                 </div>
                 <a th:href="@{/admin/book}" href="#" class="navbar-item">관리자 페이지</a>
@@ -72,7 +73,7 @@
                         언어 선택
                     </a>
                     <div class="navbar-dropdown">
-                        <a href="#" class="navbar-item has-text-link">한국어</a>
+                        <a href="#" class="navbar-item has-text-link has-text-weight-bold">한국어</a>
                         <a href="#" class="navbar-item">日本語</a>
                         <a href="#" class="navbar-item">English</a>
                     </div>
@@ -95,15 +96,12 @@
     <div class="box">
         <div class="message is-link">
             <div class="message-header">
-                <p>자유게시판 목록</p>
-                <button type="button" class="button is-link is-light is-rounded">
-                    <a th:href="@{/board/write}" href="#" style="text-decoration: none">글쓰기</a>
-                </button>
+                <p>목록</p>
             </div>
             <div class="message-body">
                 <div class="box">
                     <!-- search -->
-                    <div class="field has-addons is-justify-content-end">
+                    <div class="field has-addons is-justify-content-flex-end">
                         <div class="control">
                             <div class="select">
                                 <select name="" id="" title="search-option">
@@ -114,11 +112,14 @@
                             </div>
                         </div>
                         <div class="control">
-                            <input type="text" class="input" title="search" id="search" name="search" />
+                            <input type="text" class="input" title="search" id="search" name="search"/>
                         </div>
                         <div class="control">
                             <button type="submit" class="button is-link">
-                                <i class="fas fa-search"></i>
+                                <span class="icon is-small">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <span>검색</span>
                             </button>
                         </div>
                     </div>
@@ -129,61 +130,21 @@
                         <thead>
                         <tr>
                             <th>번호</th>
-                            <th>게시글 제목</th>
+                            <th>제목</th>
                             <th>작성자</th>
                             <th>등록일</th>
                             <th>조회수</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>5</td>
+                        <tr th:each="num : ${#numbers.sequence(10, 1)}">
+                            <td th:text="${num}">5</td>
                             <td>
-                                <a href="#">첫 게시글입니다.</a>
-                                <span class="tag is-link is-light">NEW</span>
+                                <a th:href="@{/board/detail}" href="#">첫 게시글입니다.</a>
+                                <span class="tag is-info is-light ml-2">NEW</span>
                             </td>
-                            <td>관리자</td>
-                            <td>2021-09-28</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>
-                                <a href="#">첫 게시글입니다.</a>
-                                <span class="tag is-link is-light">NEW</span>
-                            </td>
-                            <td>관리자</td>
-                            <td>2021-09-28</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>
-                                <a href="#">첫 게시글입니다.</a>
-                                <span class="tag is-link is-light">NEW</span>
-                            </td>
-                            <td>관리자</td>
-                            <td>2021-09-28</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>
-                                <a href="#">첫 게시글입니다.</a>
-                                <span class="tag is-link is-light">NEW</span>
-                            </td>
-                            <td>관리자</td>
-                            <td>2021-09-28</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                <a href="#">첫 게시글입니다.</a>
-                                <span class="tag is-link is-light">NEW</span>
-                            </td>
-                            <td>관리자</td>
-                            <td>2021-09-28</td>
+                            <td class="has-text-weight-bold has-text-grey">관리자</td>
+                            <td>2021. 09. 28</td>
                             <td>0</td>
                         </tr>
                         </tbody>
@@ -203,6 +164,15 @@
                         </ul>
                     </nav>
                     <!-- //pagination -->
+                    <div class="buttons is-justify-content-flex-end">
+                        <button type="button" class="button is-link is-rounded"
+                                th:onclick="|location.href='@{/board/write}'|">
+                            <span class="icon is-small">
+                                <i class="fas fa-feather"></i>
+                            </span>
+                            <span>글쓰기</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

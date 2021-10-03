@@ -9,7 +9,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/bulma/bulma.css}">
-    <link rel="stylesheet" th:href="@{/css/home/font.css}">
+    <link rel="stylesheet" th:href="@{/css/share/font.css}">
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
 
     <!-- JS -->
@@ -54,8 +54,9 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a href="#" class="navbar-link">커뮤니티</a>
                     <div class="navbar-dropdown">
-                        <a href="#" class="navbar-item">공지 게시판</a>
-                        <a th:href="@{/board/list}" href="#" class="navbar-item">자유 게시판</a>
+                        <a th:href="@{/board/list}" href="#" class="navbar-item">공지 게시판</a>
+                        <a th:href="@{/board/list}" href="#"
+                           class="navbar-item has-text-link has-text-weight-bold">자유 게시판</a>
                     </div>
                 </div>
                 <a th:href="@{/admin/book}" href="#" class="navbar-item">관리자 페이지</a>
@@ -67,7 +68,7 @@
                         언어 선택
                     </a>
                     <div class="navbar-dropdown">
-                        <a href="#" class="navbar-item has-text-link">한국어</a>
+                        <a href="#" class="navbar-item has-text-link has-text-weight-bold">한국어</a>
                         <a href="#" class="navbar-item">日本語</a>
                         <a href="#" class="navbar-item">English</a>
                     </div>
@@ -90,10 +91,7 @@
     <div class="box">
         <div class="message is-link">
             <div class="message-header">
-                <p>자유게시판 글쓰기</p>
-                <button type="button" class="button is-link is-light is-rounded">
-                    <a th:href="@{/board/list}" href="#" style="text-decoration: none">목록으로</a>
-                </button>
+                <p>글쓰기</p>
             </div>
             <div class="message-body">
                 <!-- form -->
@@ -167,8 +165,20 @@
                     </div>
                     <!-- //file upload 2 -->
 
-                    <div class="buttons is-justify-content-end">
-                        <button type="submit" class="button is-link">작성 완료</button>
+                    <div class="buttons is-justify-content-flex-end">
+                        <button type="submit" class="button is-link is-rounded">
+                            <span class="icon is-small">
+                                <i class="fas fa-feather"></i>
+                            </span>
+                            <span>등록</span>
+                        </button>
+                        <button type="button" class="button is-rounded"
+                                th:onclick="|location.href='@{/board/list}'|">
+                            <span class="icon is-small">
+                                <i class="fas fa-list"></i>
+                            </span>
+                            <span>목록</span>
+                        </button>
                     </div>
                 </form>
                 <!-- //form -->

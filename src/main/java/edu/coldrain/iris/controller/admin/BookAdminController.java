@@ -16,4 +16,11 @@ public class BookAdminController {
 
         return "admin/book-admin";
     }
+
+    @GetMapping("/book/registration")
+    public String bookRegistrationView() {
+        log.info("BookAdminController.bookRegistrationView");
+
+        return "admin/bookRegistrationView";
+    }
 }

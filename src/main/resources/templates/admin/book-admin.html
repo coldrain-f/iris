@@ -143,7 +143,7 @@
             <div class="container-fluid">
                 <div class="card shadow">
                     <div class="card-header">
-                        <div class="card-title">책 관리</div>
+                        <div class="card-title">책 목록</div>
                     </div>
                     <div class="card-body">
 
@@ -191,12 +191,12 @@
                                     <td>2021-09-14</td>
                                     <td>2021-09-15</td>
                                     <td class="text-center">
-                                        <button class="btn text-dark p-0 modalEventButton" type="button"
-                                                data-toggle="modal" data-target="#modifyModal">
+                                        <button id="modify-button" class="btn text-dark p-0" type="button"
+                                                data-toggle="modal" data-target="#actionModal">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button class="btn text-dark p-0 ml-1 modalEventButton" type="button"
-                                                data-toggle="modal" data-target="#deleteModal">
+                                        <button id="remove-button" class="btn text-dark p-0 ml-1" type="button"
+                                                data-toggle="modal" data-target="#actionModal">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
@@ -245,8 +245,8 @@
 
                         <div class="row">
                             <div class="col d-flex justify-content-end">
-                                <button class="btn btn-primary modalEventButton" type="button" data-toggle="modal"
-                                        data-target="#addModal">추가하기
+                                <button class="btn btn-primary" type="button" data-toggle="modal"
+                                        data-target="#actionModal" id="add-button">등록하기
                                 </button>
                                 <button type="button" class="ml-2 btn btn-primary"
                                         onclick="alert('선택된 기능이 구현되지 않았습니다.')">선택된 책 삭제
@@ -279,9 +279,28 @@
 </div>
 <!-- End of Page Wrapper -->
 
+<script>
+    $(document).ready(function () {
+        $("#add-button").on("click", function () {
+            $(".modal-title").text("책 등록");
+            $("#action-button").text("등록하기");
+        });
+
+        $("#modify-button").on("click", function () {
+            $(".modal-title").text("책 수정");
+            $("#action-button").text("수정하기");
+        });
+
+        $("#remove-button").on("click", function () {
+            $(".modal-title").text("책 삭제");
+            $("#action-button").text("삭제하기");
+        });
+    });
+</script>
+
 <!-- 추가하기 모달창 -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
-    <form action="#" method="post">
+<div class="modal fade" id="actionModal" tabindex="-1" aria-hidden="true">
+    <form>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -291,13 +310,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <label class="form-label mt-2" for="">책 이름</label>
+                    <label class="form-label mt-2" for="bookName">책 이름</label>
                     <input class="form-control mb-4" type="text"
-                           id="" name="bookName" placeholder="추가할 책 이름을 입력해 주세요..." autocomplete="off"/>
+                           id="bookName" name="bookName" placeholder="추가할 책 이름을 입력해 주세요..." autocomplete="off"/>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-                    <button type="submit" class="btn btn-primary">추가하기</button>
+                    <button type="submit" id="action-button" class="btn btn-primary"></button>
                 </div>
             </div>
         </div>

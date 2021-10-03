@@ -6111,7 +6111,7 @@ body.has-navbar-fixed-bottom, html.has-navbar-fixed-bottom {
 .pagination-link.is-current {
     background-color: #485fc7;
     border-color: #485fc7;
-    color: #fff
+    color: #fff !important;
 }
 
 .pagination-ellipsis {
