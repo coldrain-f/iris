@@ -126,7 +126,7 @@
                             </span>
                             <span>수정</span>
                         </div>
-                        <div class="button is-link is-rounded">
+                        <div class="button is-link is-rounded" id="remove-modal-button">
                             <span class="icon is-small">
                                 <i class="fas fa-trash-alt"></i>
                             </span>
@@ -202,6 +202,46 @@
             <!-- //message-body -->
         </div>
     </div>
+
+    <!-- remove button modal -->
+    <div class="modal" id="remove-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">게시글 삭제</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                정말로 게시글을 삭제하시겠습니까?
+            </section>
+            <footer class="modal-card-foot is-justify-content-flex-end">
+                <button class="button is-danger is-rounded">
+                    <span class="icon is-small">
+                        <i class="fas fa-trash-alt"></i>
+                    </span>
+                    <span>삭제</span>
+                </button>
+            </footer>
+        </div>
+    </div>
+    <!-- //remove button modal -->
+    <script>
+        //bulma 에서 모달창을 활성화하기 위해서는 .modal 에 is-active 만 추가해주면 된다.
+        $("#remove-modal-button").on("click", function () {
+            //스크롤 금지
+            $("html").addClass("is-clipped");
+            //모달창을 활성화 한다.
+            $("#remove-modal").addClass("is-active");
+        });
+
+        $(".delete").on("click", function () {
+            //스크롤 금지 해제
+            $("html").removeClass("is-clipped");
+            //모달창을 비활성화 한다.
+            $(".modal").removeClass("is-active");
+        });
+    </script>
+
     <!-- footer -->
     <footer class="footer" style="margin-top: 120px">
         <div class="content has-text-centered">
