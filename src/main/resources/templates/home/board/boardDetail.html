@@ -126,7 +126,7 @@
                             </span>
                             <span>수정</span>
                         </div>
-                        <div class="button is-link is-rounded" id="remove-modal-button">
+                        <div class="button is-link is-rounded" id="board-remove-button">
                             <span class="icon is-small">
                                 <i class="fas fa-trash-alt"></i>
                             </span>
@@ -144,7 +144,7 @@
                         <div class="field">
                             <p class="label">관리자</p>
                             <div class="control">
-                                <input type="text" class="input" title="comment" placeholder="덧글을 작성해 주세요" />
+                                <input type="text" class="input" title="comment" placeholder="덧글을 작성해 주세요"/>
                                 <div class="buttons mt-2 is-justify-content-flex-end ">
                                     <button class="button is-link is-light is-rounded">
                                     <span class="icon is-small">
@@ -167,14 +167,14 @@
                                 <td>테스트 덧글입니다.</td>
                                 <td>2021.10.03 12:58</td>
                                 <td>
-                                    <a style="text-decoration: none">
+                                    <a class="reply-modify-icon" style="text-decoration: none">
                                         <span class="icon is-small">
                                             <i class="fas fa-edit"></i>
                                         </span>
                                     </a>
                                 </td>
                                 <td>
-                                    <a style="text-decoration: none">
+                                    <a class="reply-remove-icon" style="text-decoration: none">
                                         <span class="icon is-small">
                                             <i class="fas fa-trash-alt"></i>
                                         </span>
@@ -203,8 +203,59 @@
         </div>
     </div>
 
+    <!-- reply modify modal -->
+    <div id="reply-modify-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Reply modify</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field">
+                    <label for="contents" class="label">Contents</label>
+                    <div class="control">
+                        <input type="text" id="contents" class="input" />
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot is-justify-content-flex-end">
+                <button class="button is-info is-rounded">
+                    <span class="icon is-small">
+                        <i class="fas fa-edit"></i>
+                    </span>
+                    <span>Modify</span>
+                </button>
+            </footer>
+        </div>
+    </div>
+    <!-- //reply modify modal -->
+
+    <!-- reply remove modal -->
+    <div id="reply-remove-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Reply remove</p>
+                <button class="delete"></button>
+            </header>
+            <section class="modal-card-body">
+                contents
+            </section>
+            <footer class="modal-card-foot is-justify-content-flex-end">
+                <button class="button is-danger is-rounded">
+                    <span class="icon is-small">
+                        <i class="fas fa-trash-alt"></i>
+                    </span>
+                    <span>Remove</span>
+                </button>
+            </footer>
+        </div>
+    </div>
+    <!-- //reply remove modal -->
+
     <!-- remove button modal -->
-    <div class="modal" id="remove-modal">
+    <div id="board-remove-modal" class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
@@ -225,28 +276,45 @@
         </div>
     </div>
     <!-- //remove button modal -->
+
+    <!-- modal event script -->
     <script>
         //bulma 에서 모달창을 활성화하기 위해서는 .modal 에 is-active 만 추가해주면 된다.
-        $("#remove-modal-button").on("click", function () {
-            //스크롤 금지
-            $("html").addClass("is-clipped");
-            //모달창을 활성화 한다.
-            $("#remove-modal").addClass("is-active");
-        });
+        $(document).ready(function () {
+            $(".reply-modify-icon").on("click", function () {
+                $("html").addClass("is-clipped");
+                $("#reply-modify-modal").addClass("is-active");
+            });
 
-        $(".delete").on("click", function () {
-            //스크롤 금지 해제
-            $("html").removeClass("is-clipped");
-            //모달창을 비활성화 한다.
-            $(".modal").removeClass("is-active");
+            $(".reply-remove-icon").on("click", function () {
+                $("html").addClass("is-clipped");
+                $("#reply-remove-modal").addClass("is-active");
+            });
+
+            $("#board-remove-button").on("click", function () {
+                //스크롤 금지
+                $("html").addClass("is-clipped");
+                //모달창을 활성화 한다.
+                $("#board-remove-modal").addClass("is-active");
+            });
+
+            // close button click event
+            $(".delete").on("click", function () {
+                //스크롤 금지 해제
+                $("html").removeClass("is-clipped");
+                //모달창을 비활성화 한다.
+                $(".modal").removeClass("is-active");
+            });
         });
     </script>
+    <!-- //modal event script -->
 
     <!-- footer -->
     <footer class="footer" style="margin-top: 120px">
         <div class="content has-text-centered">
             <p>
-                <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+                <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
+                licensed
                 <a href="#">MIT</a>. The website content
                 is licensed <a href="#">CC BY NC SA 4.0</a>.
             </p>
